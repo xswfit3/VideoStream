@@ -14,6 +14,7 @@ from cv2 import *
 from pyspark import SparkContext, SparkConf
 import os
 import myUtil
+import sys
 help_message = '''
 USAGE: peopledetect.py <image_names> ...
 

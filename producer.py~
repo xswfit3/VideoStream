@@ -53,7 +53,7 @@ def testImg():
     imshow("detected",imgDetect)
     waitKey(0)
 def testVideo():
-    vc = VideoCapture('file:///home/VideoStream/track.avi')
+    vc = VideoCapture('/home/VideoStream/track.avi')
     sucess,frame = vc.read()
     seq = 0;
 
@@ -69,7 +69,7 @@ def produceImgs(videoPath):
     vc = VideoCapture(videoPath)
     txtSeq = 0
     lineSeq = 0
-    num = 1000
+    num = 5
     imgsDir = "/home/VideoStream/Imgs/"
     txtsDir = "/home/VideoStream/Txts/"
     if os.path.exists(txtsDir):
@@ -84,7 +84,7 @@ def produceImgs(videoPath):
     sucess,frame = vc.read()
     print sucess
     fileOut = open(txtPath,'w')
-    while sucess and lineSeq < 1000:
+    while sucess and lineSeq < 100:
         imshow("img",frame)
         if lineSeq !=0 and lineSeq % num == 0 :
             fileOut.close() 
@@ -98,7 +98,7 @@ def produceImgs(videoPath):
         fileOut.write(imgOutPath +"\n")
         lineSeq += 1 
         sucess,frame = vc.read()
-        waitKey(200)
+        waitKey(1000)
         print sucess
         #time.sleep(0.1)
     return

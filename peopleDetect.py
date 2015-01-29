@@ -45,7 +45,8 @@ def Write(x):
 def testMap(imgPaths):
     sparkConf = SparkConf()
    # sparkConf.setExecutorEnv(key=None, value=None, pairs=None)
-    sc = SparkContext("spark://master:7077","pyStream")
+    #sc = SparkContext("spark://master:7077","pyStream")
+    sc = SparkContext("local[4]","pyStream")
     #imgPaths = 'file:///home/VideoStream/Txts2/100.txt'
     Index = imgPaths.find("Txts")
     imgOutDir =imgPaths[:Index] + "ImgsOut" 

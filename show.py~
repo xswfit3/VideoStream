@@ -15,7 +15,7 @@ def showImg():
         waitKey(100)
     t = threading.Timer(1, showImg)
     t.start()#Notice: use global variable!
-#showImg()
-t = threading.Timer(0, showImg)
-t.start()
+showImg()
+#t = threading.Timer(0, showImg)
+#t.start()
 
