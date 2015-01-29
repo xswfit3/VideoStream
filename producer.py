@@ -53,7 +53,7 @@ def testImg():
     imshow("detected",imgDetect)
     waitKey(0)
 def testVideo():
-    vc = VideoCapture('/home/xunw/x2/pyWs/track.avi')
+    vc = VideoCapture('/home/VideoStream/track.avi')
     sucess,frame = vc.read()
     seq = 0;
 
@@ -70,16 +70,16 @@ def produceImgs(videoPath):
     txtSeq = 0
     lineSeq = 0
     num = 1000
-    imgsDir = "./Imgs"
-    txtsDir = "./Txts"
+    imgsDir = "/home/VideoStream/Imgs/"
+    txtsDir = "/home/VideoStream/Txts/"
     if os.path.exists(txtsDir):
         txtList = os.listdir(txtsDir)
         for t in txtList:
-            os.remove(txtsDir + '/'+ t)  #清空文件夹
+            os.remove(txtsDir + t)  #清空文件夹
     else:
         print "create Imgs dir and Txts dir  in current path "
-        exit(-1)
-    txtPath = txtsDir+ '/'+ str(txtSeq) + ".txt"
+        #exit(-1)
+    txtPath = txtsDir+ str(txtSeq) + ".txt"
     print txtPath
     sucess,frame = vc.read()
     print sucess
@@ -90,16 +90,17 @@ def produceImgs(videoPath):
             fileOut.close() 
             print lineSeq #evry 10 line create a txt
             txtSeq += 1
-            txtPath = txtsDir+ '/' + str(txtSeq) + ".txt"
+            txtPath = txtsDir + str(txtSeq) + ".txt"
             fileOut = open(txtPath,'w')
-        #imgOutPath = imgsDir+ '/' + str(lineSeq) + ".jpg" 
-        imgOutPath = '/home/VideoStream/Imgs/' + str(lineSeq) + '.jpg'
+        #imgOutPath = imgsDir+  str(lineSeq) + ".jpg" 
+        imgOutPath = imgsDir + str(lineSeq) + '.jpg'
         imwrite(imgOutPath,frame)
         fileOut.write(imgOutPath +"\n")
         lineSeq += 1 
         sucess,frame = vc.read()
-        waitKey(100)
+        waitKey(200)
         print sucess
+        #time.sleep(0.1)
     return
 if __name__ =="__main__":
     if len(sys.argv) != 2:
